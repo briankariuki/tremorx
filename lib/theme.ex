@@ -59,7 +59,7 @@ defmodule Tremorx.Theme do
   end
 
   @doc """
-  Returns the value from size and key
+  Returns the value from size for key
   """
   def get_sizing_style(size, key) do
     sizing()
@@ -68,7 +68,7 @@ defmodule Tremorx.Theme do
   end
 
   @doc """
-  Returns the value from spacing and key
+  Returns the value from spacing for key
   """
   def get_spacing_style(size, key) do
     spacing()
@@ -77,12 +77,89 @@ defmodule Tremorx.Theme do
   end
 
   @doc """
-  Returns the value from border and key
+  Returns the value from border for key
   """
   def get_border_style(size, key) do
     border()
     |> Map.get(String.to_atom(size))
     |> Map.get(String.to_atom(key))
+  end
+
+  @doc """
+  Returns the value from align_items for key
+  """
+  def get_align_items_style(key) do
+    align_items()
+    |> Map.get(String.to_atom(key))
+  end
+
+  @doc """
+  Returns the value from flex_direction for key
+  """
+  def get_flex_direction_style(key) do
+    flex_direction()
+    |> Map.get(String.to_atom(key))
+  end
+
+  @doc """
+  Returns the value from justify_content for key
+  """
+  def get_justify_content_style(key) do
+    justify_content()
+    |> Map.get(String.to_atom(key))
+  end
+
+  @doc """
+  Returns the value from col_span for key
+  """
+  def get_col_span_style(key) do
+    col_span()
+    |> Map.get(String.to_atom(key))
+  end
+
+  @doc """
+  Returns the value from col_span for size and key
+  """
+  def get_col_span_style(size, key) do
+    col_span()
+    |> Map.get(String.to_atom(key))
+    |> case do
+      nil -> ""
+      value -> "#{size}:" <> value
+    end
+  end
+
+  @doc """
+  Returns the value from grid_cols for key
+  """
+  def get_grid_cols_style(key) do
+    grid_cols()
+    |> Map.get(String.to_atom(key))
+  end
+
+  @doc """
+  Returns the value from grid_cols for size and key
+  """
+  def get_grid_cols_style(size, key) do
+    grid_cols()
+    |> Map.get(String.to_atom(key))
+    |> case do
+      nil -> ""
+      value -> "#{size}:" <> value
+    end
+  end
+
+  @doc """
+  Returns the value from decoration_alignment for key
+  """
+  def get_decoration_alignment_style(key) do
+    case key do
+      "left" -> get_border_style("lg", "left")
+      "top" -> get_border_style("lg", "top")
+      "right" -> get_border_style("lg", "right")
+      "bottom" -> get_border_style("lg", "bottom")
+      _ -> ""
+    end
   end
 
   @doc """
@@ -569,6 +646,107 @@ defmodule Tremorx.Theme do
       sm: "font-normal",
       md: "font-medium",
       lg: "font-semibold"
+    }
+  end
+
+  @doc """
+  Defines justify_content for the theme
+  """
+  def justify_content() do
+    %{
+      start: "justify-start",
+      end: "justify-end",
+      center: "justify-center",
+      between: "justify-between",
+      around: "justify-around",
+      evenly: "justify-evenly"
+    }
+  end
+
+  @doc """
+  Defines align_items for the theme
+  """
+  def align_items() do
+    %{
+      start: "items-start",
+      end: "items-end",
+      center: "items-center",
+      baseline: "items-baseline",
+      stretch: "items-stretch"
+    }
+  end
+
+  @doc """
+  Defines flex_direction for the theme
+  """
+  def flex_direction() do
+    %{
+      row: "flex-row",
+      col: "flex-col",
+      row_reverse: "flex-row-reverse",
+      col_reverse: "flex-col-reverse"
+    }
+  end
+
+  @doc """
+  Defines grid_cols for the theme
+  """
+  def grid_cols() do
+    %{
+      "0": "grid-cols-none",
+      "1": "grid-cols-1",
+      "2": "grid-cols-2",
+      "3": "grid-cols-3",
+      "4": "grid-cols-4",
+      "5": "grid-cols-5",
+      "6": "grid-cols-6",
+      "7": "grid-cols-7",
+      "8": "grid-cols-8",
+      "9": "grid-cols-9",
+      "10": "grid-cols-10",
+      "11": "grid-cols-11",
+      "12": "grid-cols-12"
+    }
+  end
+
+  @doc """
+  Defines col_span for the theme
+  """
+  def col_span() do
+    %{
+      "1": "col-span-1",
+      "2": "col-span-2",
+      "3": "col-span-3",
+      "4": "col-span-4",
+      "5": "col-span-5",
+      "6": "col-span-6",
+      "7": "col-span-7",
+      "8": "col-span-8",
+      "9": "col-span-9",
+      "10": "col-span-10",
+      "11": "col-span-11",
+      "12": "col-span-12",
+      "13": "col-span-13"
+    }
+  end
+
+  @doc """
+  Defines vertical_positions for the theme
+  """
+  def vertical_positions() do
+    %{
+      top: "top",
+      bottom: "bottom"
+    }
+  end
+
+  @doc """
+  Defines horizontal_positions for the theme
+  """
+  def horizontal_positions() do
+    %{
+      left: "left",
+      right: "right"
     }
   end
 end

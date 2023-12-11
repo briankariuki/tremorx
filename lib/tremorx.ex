@@ -10,7 +10,8 @@ defmodule Tremorx do
       import Tremorx.Components.{
         Callout,
         Text,
-        Legend
+        Legend,
+        Layout
       }
     end
   end
