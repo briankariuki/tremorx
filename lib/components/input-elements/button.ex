@@ -1,6 +1,6 @@
 defmodule Tremorx.Components.Button do
   @moduledoc """
-  Renders buttons
+  Button
   """
 
   alias Tails
@@ -148,7 +148,7 @@ defmodule Tremorx.Components.Button do
       )
 
     ~H"""
-    `<%!-- <.icon name="hero-magnifying-glass" /> --%>
+    <%!-- <.icon name="hero-magnifying-glass" /> --%>
       <.loading_spinner class={
           Tails.classes([
             Theme.make_class_name("button", "icon"),
