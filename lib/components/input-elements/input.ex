@@ -83,7 +83,7 @@ defmodule Tremorx.Components.Input do
           type={@type}
           placeholder={@placeholder}
           disabled={@disabled}
-          value={Phoenix.HTML.Form.normalize_value(@type, @value) || ""}
+          value={Phoenix.HTML.Form.normalize_value(@type, @value || "")}
           class={
             Tails.classes([
               Theme.make_class_name(@input_class_name, "input"),
