@@ -12,7 +12,8 @@ defmodule Tremorx do
         Text,
         Legend,
         Layout,
-        Button
+        Button,
+        Input
       }
     end
   end

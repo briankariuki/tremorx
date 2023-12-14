@@ -32,7 +32,7 @@ defmodule Tremorx.Components.Legend do
     assigns =
       assigns
       |> assign_new(:legend_id, fn ->
-        "legend_#{to_string(:erlang.ref_to_list(:erlang.make_ref()))}"
+        "legend_#{to_string(System.unique_integer([:positive]))}"
       end)
 
     ~H"""
