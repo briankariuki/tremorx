@@ -52,10 +52,34 @@ defmodule Tremorx.Theme do
   end
 
   @doc """
+  Returns the color classes using the color and type
+  """
+  def get_color_style(color, type) do
+    color_names(color)
+    |> Keyword.fetch!(String.to_atom("#{type}_color"))
+  end
+
+  @doc """
   Creates a css class name from the component name and class
   """
   def make_class_name(component, class) do
     "tremor-#{component}-#{class}"
+  end
+
+  @doc """
+  Returns the value from font_size for key
+  """
+  def get_font_size_style(key) do
+    font_size()
+    |> Map.get(String.to_atom(key))
+  end
+
+  @doc """
+  Returns the value from font_weight for key
+  """
+  def get_font_weight_style(key) do
+    font_weight()
+    |> Map.get(String.to_atom(key))
   end
 
   @doc """
@@ -160,6 +184,23 @@ defmodule Tremorx.Theme do
       "bottom" -> get_border_style("lg", "bottom")
       _ -> ""
     end
+  end
+
+  @doc """
+  Returns the value from button_proportion for variant and size
+  """
+  def get_button_proportion_style(variant, size) do
+    button_proportion(variant)
+    |> Map.get(String.to_atom(size))
+  end
+
+  @doc """
+  Returns the value from icon_size for variant and size
+  """
+  def get_icon_size_style(size, key) do
+    icon_size()
+    |> Map.get(String.to_atom(size))
+    |> Map.get(String.to_atom(key))
   end
 
   @doc """
@@ -748,5 +789,98 @@ defmodule Tremorx.Theme do
       left: "left",
       right: "right"
     }
+  end
+
+  @doc """
+  Defines icon_sizes for the theme
+  """
+  def icon_size() do
+    %{
+      xs: %{
+        height: get_sizing_style("md", "height"),
+        width: get_sizing_style("md", "width")
+      },
+      sm: %{
+        height: get_sizing_style("lg", "height"),
+        width: get_sizing_style("lg", "width")
+      },
+      md: %{
+        height: get_sizing_style("lg", "height"),
+        width: get_sizing_style("lg", "width")
+      },
+      lg: %{
+        height: get_sizing_style("xl", "height"),
+        width: get_sizing_style("xl", "width")
+      },
+      xl: %{
+        height: get_sizing_style("xl", "height"),
+        width: get_sizing_style("xl", "width")
+      }
+    }
+  end
+
+  @doc """
+  Defines button_proportions for the theme
+  """
+  def button_proportion(variant) do
+    case variant do
+      "light" ->
+        %{
+          xs: %{
+            padding_x: "",
+            padding_y: "",
+            font_size: get_font_size_style("xs")
+          },
+          sm: %{
+            padding_x: "",
+            padding_y: "",
+            font_size: get_font_size_style("sm")
+          },
+          md: %{
+            padding_x: "",
+            padding_y: "",
+            font_size: get_font_size_style("md")
+          },
+          lg: %{
+            padding_x: "",
+            padding_y: "",
+            font_size: get_font_size_style("lg")
+          },
+          xl: %{
+            padding_x: "",
+            padding_y: "",
+            font_size: get_font_size_style("xl")
+          }
+        }
+
+      _ ->
+        %{
+          xs: %{
+            padding_x: get_spacing_style("md", "padding_x"),
+            padding_y: get_spacing_style("xs", "padding_y"),
+            font_size: get_font_size_style("xs")
+          },
+          sm: %{
+            padding_x: get_spacing_style("two_xl", "padding_x"),
+            padding_y: get_spacing_style("sm", "padding_y"),
+            font_size: get_font_size_style("sm")
+          },
+          md: %{
+            padding_x: get_spacing_style("two_xl", "padding_x"),
+            padding_y: get_spacing_style("sm", "padding_y"),
+            font_size: get_font_size_style("md")
+          },
+          lg: %{
+            padding_x: get_spacing_style("two_xl", "padding_x"),
+            padding_y: get_spacing_style("md", "padding_y"),
+            font_size: get_font_size_style("lg")
+          },
+          xl: %{
+            padding_x: get_spacing_style("two_xl", "padding_x"),
+            padding_y: get_spacing_style("lg", "padding_y"),
+            font_size: get_font_size_style("xl")
+          }
+        }
+    end
   end
 end

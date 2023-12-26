@@ -11,7 +11,9 @@ defmodule Tremorx do
         Callout,
         Text,
         Legend,
-        Layout
+        Layout,
+        Button,
+        Input
       }
     end
   end

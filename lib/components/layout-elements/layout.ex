@@ -1,6 +1,6 @@
 defmodule Tremorx.Components.Layout do
   @moduledoc """
-  Flex, Grid, Divider and Card
+  Flex, Grid, Col, Divider and Card
   """
 
   alias Tails

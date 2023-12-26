@@ -25,8 +25,8 @@ defmodule Tremorx.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:phoenix, "~> 1.7.3"},
-      {:phoenix_live_view, "~> 0.19.0"},
+      {:phoenix, "~> 1.7.10"},
+      {:phoenix_live_view, "~> 0.20"},
       {:tails, "~> 0.1.5"},
       {:ex_doc, "~> 0.24", only: :dev, runtime: false}
       # {:dep_from_hexpm, "~> 0.3.0"},
