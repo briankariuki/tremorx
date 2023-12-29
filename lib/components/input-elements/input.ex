@@ -6,12 +6,12 @@ defmodule Tremorx.Components.Input do
   alias Tails
   alias Tremorx.Theme
   use Phoenix.Component
-  alias Phoenix.LiveView.JS
 
   import Tremorx.Assets
 
   attr(:type, :string, values: ~w(text password email url number))
-  attr(:value, :any, default: "")
+  attr(:value, :any, default: nil)
+  attr(:name, :any, default: nil)
   attr(:error, :boolean, default: false)
   attr(:error_message, :string)
   attr(:disabled, :boolean, default: false)
@@ -33,19 +33,7 @@ defmodule Tremorx.Components.Input do
       end)
 
     ~H"""
-    <div
-      id={@input_id}
-      data-autofocus={@autofocus}
-      data-focus="false"
-      phx-mounted={
-        if(@type == "password",
-          do:
-            JS.dispatch("input_mounted", detail: %{id: @input_id})
-            |> JS.dispatch("password_input_mounted", detail: %{id: @input_id}),
-          else: JS.dispatch("input_mounted", detail: %{id: @input_id})
-        )
-      }
-    >
+    <div id={@input_id} data-autofocus={@autofocus} data-focus="false" phx-hook="Input">
       <div
         id={"#{@input_id}_wrapper"}
         class={
@@ -80,9 +68,11 @@ defmodule Tremorx.Components.Input do
 
         <input
           id={"#{@input_id}_field"}
+          name={@name}
           type={@type}
           placeholder={@placeholder}
           disabled={@disabled}
+          phx-debounce="blur"
           value={Phoenix.HTML.Form.normalize_value(@type, @value || "")}
           class={
             Tails.classes([
@@ -172,86 +162,11 @@ defmodule Tremorx.Components.Input do
         <%= @error_message %>
       </p>
     </div>
-
-    <script>
-      document.addEventListener("input_mounted", (e) => {
-        const inputId = e.detail.id
-        const inputField = document.getElementById(`${inputId}_field`)
-        const inputWrapper = document.getElementById(`${inputId}_wrapper`)
-        const input = document.getElementById(inputId)
-        const canAutofocus = input.getAttribute("data-autofocus")
-
-        if(canAutofocus == "true") {
-          inputField.focus()
-          input.setAttribute("data-focus", true)
-          inputWrapper.classList.add(
-            "ring-2",
-            "border-tremor-brand-subtle",
-            "ring-tremor-brand-muted",
-            "dark:border-dark-tremor-brand-subtle",
-            "dark:ring-dark-tremor-brand-muted"
-          )
-        }
-
-        inputField.addEventListener("focus", (_) => {
-          inputField.focus()
-          input.setAttribute("data-focus", true)
-          inputWrapper.classList.add(
-            "ring-2",
-            "border-tremor-brand-subtle",
-            "ring-tremor-brand-muted",
-            "dark:border-dark-tremor-brand-subtle",
-            "dark:ring-dark-tremor-brand-muted"
-          )
-        })
-
-        inputField.addEventListener("blur", (_) => {
-          inputField.blur()
-          input.setAttribute("data-focus", false)
-          inputWrapper.classList.remove(
-            "ring-2",
-            "border-tremor-brand-subtle",
-            "ring-tremor-brand-muted",
-            "dark:border-dark-tremor-brand-subtle",
-            "dark:ring-dark-tremor-brand-muted"
-          )
-        })
-      })
-
-      document.addEventListener("password_input_mounted", (e) => {
-        const inputId = e.detail.id
-        const inputField = document.getElementById(`${inputId}_field`)
-        const eyeBtn = document.getElementById(`${inputId}_eye_btn`)
-        const eyeIcon = document.getElementById(`${inputId}_eye_icon`)
-        const eyeOffIcon = document.getElementById(`${inputId}_eye_off_icon`)
-
-        eyeBtn.setAttribute("data-is-password-visible", false)
-
-        eyeBtn.addEventListener("click", (_) => {
-          setTimeout(() => {
-            const isPasswordVisible = eyeBtn.getAttribute("data-is-password-visible")
-
-            if(isPasswordVisible == "true") {
-              eyeIcon.classList.remove("hidden")
-              eyeOffIcon.classList.add("hidden")
-              eyeBtn.setAttribute("data-is-password-visible", false)
-              inputField.setAttribute("type", "password")
-            } else {
-              eyeOffIcon.classList.remove("hidden")
-              eyeIcon.classList.add("hidden")
-              eyeBtn.setAttribute("data-is-password-visible", true)
-              inputField.setAttribute("type", "text")
-
-            }
-          }, 200)
-        })
-
-      })
-    </script>
     """
   end
 
   attr(:value, :any, default: "")
+  attr(:name, :any, default: "")
   attr(:error, :boolean, default: false)
   attr(:error_message, :string)
   attr(:disabled, :boolean, default: false)
@@ -273,6 +188,7 @@ defmodule Tremorx.Components.Input do
     ~H"""
     <div id={@textarea_id}>
       <textarea
+        name={@name}
         id={"#{@textarea_id}_field"}
         placeholder={@placeholder}
         disabled={@disabled}
@@ -324,13 +240,17 @@ defmodule Tremorx.Components.Input do
   slot(:icon)
 
   attr(:field, Phoenix.HTML.FormField,
-    doc: "a form field struct retrieved from the form, for example: @form[:email]"
+    doc: "a form field struct retrieved from the form, for example: @form[:email]",
+    default: nil
   )
+
+  attr(:rest, :global)
 
   @doc """
   Renders a text input field
   """
-  def text_input(%{field: %Phoenix.HTML.FormField{} = field} = assigns) do
+  def text_input(%{field: %Phoenix.HTML.FormField{} = field} = assigns)
+      when is_nil(field) == false do
     assigns
     |> assign(id: assigns.id || field.id)
     |> assign(input_class_name: "text-input")
@@ -358,10 +278,13 @@ defmodule Tremorx.Components.Input do
     doc: "a form field struct retrieved from the form, for example: @form[:email]"
   )
 
+  attr(:rest, :global)
+
   @doc """
   Renders a text area input field
   """
-  def textarea_input(%{field: %Phoenix.HTML.FormField{} = field} = assigns) do
+  def textarea_input(%{field: %Phoenix.HTML.FormField{} = field} = assigns)
+      when is_nil(field) == false do
     assigns
     |> assign(id: assigns.id || field.id)
     |> assign(textarea_class_name: "textarea-input")

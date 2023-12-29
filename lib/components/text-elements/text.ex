@@ -20,15 +20,15 @@ defmodule Tremorx.Components.Text do
     ~H"""
     <p
       class={
-     "text-tremor-default " <>
-      Tails.classes([
-        if(is_nil(@color),
-          do: Tails.classes(["text-tremor-content", "dark:text-dark-tremor-content"]),
-          else: Theme.get_color_style(@color, "text", "text")
-        ),
-        if(is_nil(@class), do: "", else: @class)
-      ])
-    }
+        "text-tremor-default " <>  Tails.classes([
+
+          if(is_nil(@color),
+            do: Tails.classes(["text-tremor-content", "dark:text-dark-tremor-content"]),
+            else: Theme.get_color_style(@color, "text", "text")
+          ),
+          if(is_nil(@class), do: "", else: @class)
+        ])
+      }
       {@rest}
     >
       <%= render_slot(@inner_block) %>
@@ -48,15 +48,16 @@ defmodule Tremorx.Components.Text do
     ~H"""
     <p
       class={
-     "font-medium text-tremor-title " <>
-      Tails.classes([
-        if(is_nil(@color),
-          do: Tails.classes(["text-tremor-content-emphasis", "dark:text-dark-tremor-content-emphasis"]),
-          else: Theme.get_color_style(@color, "dark_text", "text")
-        ),
-        if(is_nil(@class), do: "", else: @class)
-      ])
-    }
+        "text-tremor-title " <> Tails.classes([
+          "font-medium",
+          if(is_nil(@color),
+            do:
+              Tails.classes(["text-tremor-content-emphasis", "dark:text-dark-tremor-content-emphasis"]),
+            else: Theme.get_color_style(@color, "dark_text", "text")
+          ),
+          if(is_nil(@class), do: "", else: @class)
+        ])
+      }
       {@rest}
     >
       <%= render_slot(@inner_block) %>
@@ -103,8 +104,8 @@ defmodule Tremorx.Components.Text do
     ~H"""
     <p
       class={
-     "font-semibold text-tremor-metric " <>
-      Tails.classes([
+        "text-tremor-metric " <> Tails.classes([
+          "font-semibold",
         if(is_nil(@color),
           do: Tails.classes(["text-tremor-content-emphasis", "dark:text-dark-tremor-content-emphasis"]),
           else: Theme.get_color_style(@color, "dark_text", "text")

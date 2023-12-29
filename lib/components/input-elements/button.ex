@@ -13,6 +13,7 @@ defmodule Tremorx.Components.Button do
   attr(:color, :string, default: nil)
   attr(:class, :string, default: nil)
   attr(:variant, :string, default: "primary", values: ~w(primary secondary light))
+  attr(:type, :string, default: "button", values: ~w(button submit))
   attr(:disabled, :boolean, default: nil)
   attr(:loading, :boolean, default: false)
   attr(:loading_text, :string, default: nil)
@@ -46,19 +47,22 @@ defmodule Tremorx.Components.Button do
       )
 
     ~H"""
-      <button type="button" class={
+    <button
+      type={@type}
+      class={
         Tails.classes([
           Theme.make_class_name("button", "root"),
           "flex-shrink-0 inline-flex justify-center items-center group font-medium outline-none",
           if(@variant != "light",
-              do: Tails.classes([
+            do:
+              Tails.classes([
                 "rounded-tremor-default",
                 "shadow-tremor-input",
                 "dark:shadow-dark-tremor-input",
                 Theme.get_border_style("sm", "all")
               ]),
-              else: ""
-            ),
+            else: ""
+          ),
           Map.get(@button_proportion_style, :padding_x),
           Map.get(@button_proportion_style, :padding_y),
           Map.get(@button_proportion_style, :font_size),
@@ -66,67 +70,65 @@ defmodule Tremorx.Components.Button do
           Map.get(@button_color_style, :bg_color),
           Map.get(@button_color_style, :border_color),
           Map.get(@button_color_style, :hover_border_color),
-
-          if(is_nil(@is_disabled), do:
-            Tails.classes([
-              Map.get(@button_color_style, :hover_text_color),
-              Map.get(@button_color_style, :hover_bg_color),
-              Map.get(@button_color_style, :hover_border_color),
-            ]),
-            else: "opacity-50 cursor-not-allowed"),
-
+          if(is_nil(@is_disabled),
+            do:
+              Tails.classes([
+                Map.get(@button_color_style, :hover_text_color),
+                Map.get(@button_color_style, :hover_bg_color),
+                Map.get(@button_color_style, :hover_border_color)
+              ]),
+            else: "opacity-50 cursor-not-allowed"
+          ),
           if(is_nil(@class), do: "", else: @class)
-
         ])
       }
       disabled={@is_disabled}
-      {@rest}>
+      {@rest}
+    >
+      <.button_icon_spinner
+        :if={@show_icon && @icon_position != "right"}
+        loading={@loading}
+        icon_size={@icon_size}
+        icon_position={@icon_position}
+        need_icon_margin={@need_icon_margin}
+      >
+        <%= render_slot(@icon) %>
+      </.button_icon_spinner>
 
+      <span
+        :if={@show_loading_text == true}
+        class={
+          Tails.classes([
+            Theme.make_class_name("button", "text"),
+            "text-sm whitespace-nowrap"
+          ])
+        }
+      >
+        <%= @loading_text %>
+      </span>
+
+      <span
+        :if={@inner_block != [] && @show_loading_text == false}
+        class={
+          Tails.classes([
+            Theme.make_class_name("button", "text"),
+            "text-sm whitespace-nowrap"
+          ])
+        }
+      >
+        <%= render_slot(@inner_block) %>
+      </span>
 
       <.button_icon_spinner
-          :if={@show_icon && @icon_position != "right" }
-          loading={@loading}
-          icon_size={@icon_size}
-          icon_position={@icon_position}
-          need_icon_margin={@need_icon_margin}
-       >
-          <%= render_slot(@icon) %>
-       </.button_icon_spinner>
-
-       <span
-          :if={@show_loading_text == true}
-          class={
-            Tails.classes([
-              Theme.make_class_name("button", "text"),
-              "text-sm whitespace-nowrap"
-            ])
-          }
-       >
-          <%= @loading_text %>
-       </span>
-
-       <span
-          :if={@inner_block != [] && @show_loading_text == false}
-          class={
-            Tails.classes([
-              Theme.make_class_name("button", "text"),
-              "text-sm whitespace-nowrap"
-            ])
-          }
-       >
-          <%= render_slot(@inner_block)%>
-       </span>
-
-       <.button_icon_spinner
-          :if={@show_icon && @icon_position == "right" }
-          loading={@loading}
-          icon_size={@icon_size}
-          icon_position={@icon_position}
-          need_icon_margin={@need_icon_margin}
-       >
-          <%= render_slot(@icon) %>
-       </.button_icon_spinner>
-      </button>
+        :if={@show_icon && @icon_position == "right"}
+        loading={@loading}
+        icon_size={@icon_size}
+        icon_position={@icon_position}
+        need_icon_margin={@need_icon_margin}
+      >
+        <%= render_slot(@icon) %>
+      </.button_icon_spinner>
+    </button>
     """
   end
 
@@ -149,17 +151,16 @@ defmodule Tremorx.Components.Button do
 
     ~H"""
     <%!-- <.icon name="hero-magnifying-glass" /> --%>
-      <.loading_spinner class={
-          Tails.classes([
-            Theme.make_class_name("button", "icon"),
-            "animate-spin shrink-0",
-            @margin,
-            get_spinner_size("default", @icon_size),
-            get_spinner_size("entered", @icon_size),
-            "transition-[width] duration-150"
-          ])
-        }
-      />
+    <.loading_spinner class={
+      Tails.classes([
+        Theme.make_class_name("button", "icon"),
+        "animate-spin shrink-0",
+        @margin,
+        get_spinner_size("default", @icon_size),
+        get_spinner_size("entered", @icon_size),
+        "transition-[width] duration-150"
+      ])
+    } />
     """
   end
 
@@ -181,7 +182,7 @@ defmodule Tremorx.Components.Button do
         "flex items-center justify-center"
       ])
     }>
-      <%= render_slot(@inner_block)%>
+      <%= render_slot(@inner_block) %>
     </div>
     """
   end

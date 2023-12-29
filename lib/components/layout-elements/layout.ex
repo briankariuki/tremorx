@@ -30,10 +30,9 @@ defmodule Tremorx.Components.Layout do
           if(is_nil(@class), do: "", else: @class)
         ])
       }
-
       {@rest}
     >
-    <%= render_slot(@inner_block) %>
+      <%= render_slot(@inner_block) %>
     </div>
     """
   end
@@ -44,7 +43,7 @@ defmodule Tremorx.Components.Layout do
 
   def divider(%{inner_block: []} = assigns) do
     ~H"""
-      <div
+    <div
       class={
         Tails.classes([
           Theme.make_class_name("divider", "root"),
@@ -52,20 +51,20 @@ defmodule Tremorx.Components.Layout do
           "text-tremor-content",
           "dark:text-dark-tremor-content",
           if(is_nil(@class), do: "", else: @class)
-        ])}
-
-        {@rest}
-      >
-          <div class={Tails.classes(["w-full h-[1px] bg-tremor-border dark:bg-dark-tremor-border"])}>
-          </div>
+        ])
+      }
+      {@rest}
+    >
+      <div class={Tails.classes(["w-full h-[1px] bg-tremor-border dark:bg-dark-tremor-border"])}>
       </div>
+    </div>
     """
   end
 
   def divider(assigns) do
     ~H"""
     <%!-- h-[1px] --%>
-      <div
+    <div
       class={
         Tails.classes([
           Theme.make_class_name("divider", "root"),
@@ -73,21 +72,20 @@ defmodule Tremorx.Components.Layout do
           "text-tremor-content",
           "dark:text-dark-tremor-content",
           if(is_nil(@class), do: "", else: @class)
-        ])}
-
-        {@rest}
-      >
-
-        <div class={Tails.classes(["w-full h-[1px] bg-tremor-border dark:bg-dark-tremor-border"])}>
-        </div>
-
-        <div class={Tails.classes(["text-inherit whitespace-nowrap"])}>
-          <%= render_slot(@inner_block) %>
-        </div>
-
-        <div class={Tails.classes(["w-full h-[1px] bg-tremor-border dark:bg-dark-tremor-border"])}>
-        </div>
+        ])
+      }
+      {@rest}
+    >
+      <div class={Tails.classes(["w-full h-[1px] bg-tremor-border dark:bg-dark-tremor-border"])}>
       </div>
+
+      <div class={Tails.classes(["text-inherit whitespace-nowrap"])}>
+        <%= render_slot(@inner_block) %>
+      </div>
+
+      <div class={Tails.classes(["w-full h-[1px] bg-tremor-border dark:bg-dark-tremor-border"])}>
+      </div>
+    </div>
     """
   end
 
@@ -114,8 +112,11 @@ defmodule Tremorx.Components.Layout do
           if(is_nil(@num_items_md), do: "", else: Theme.get_grid_cols_style("md", @num_items_md)),
           if(is_nil(@num_items_lg), do: "", else: Theme.get_grid_cols_style("lg", @num_items_lg)),
           if(is_nil(@class), do: "", else: @class)
-        ])} {@rest}>
-        <%= render_slot(@inner_block) %>
+        ])
+      }
+      {@rest}
+    >
+      <%= render_slot(@inner_block) %>
     </div>
     """
   end
@@ -142,8 +143,11 @@ defmodule Tremorx.Components.Layout do
           if(is_nil(@num_col_span_md), do: "", else: Theme.get_col_span_style("md", @num_col_span_md)),
           if(is_nil(@num_col_span_lg), do: "", else: Theme.get_col_span_style("lg", @num_col_span_lg)),
           if(is_nil(@class), do: "", else: @class)
-        ])} {@rest}>
-        <%= render_slot(@inner_block) %>
+        ])
+      }
+      {@rest}
+    >
+      <%= render_slot(@inner_block) %>
     </div>
     """
   end
@@ -159,29 +163,29 @@ defmodule Tremorx.Components.Layout do
   """
   def card(assigns) do
     ~H"""
-      <div
-        class={
-          Tails.classes([
-            Theme.make_class_name("card", "root"),
-            "relative w-full text-left ring-1 rounded-tremor-default",
-            "bg-tremor-background ring-tremor-ring shadow-tremor-card",
-            "dark:bg-dark-tremor-background dark:ring-dark-tremor-ring dark:shadow-dark-tremor-card",
-
-            if(is_nil(@decoration_color),
-              do:
-                "border-tremor-brand dark:border-dark-tremor-brand",
-              else:
-                Tails.classes([
-                  Theme.get_color_style(@decoration_color, "border", "border"),
-                ])
-            ),
-            Theme.get_decoration_alignment_style(@decoration),
-            Theme.get_spacing_style("three_xl", "padding_all"),
-            if(is_nil(@class), do: "", else: @class)
-          ])
-      } {@rest}>
-        <%= render_slot(@inner_block) %>
-      </div>
+    <div
+      class={
+        Tails.classes([
+          Theme.make_class_name("card", "root"),
+          "relative w-full text-left ring-1 rounded-tremor-default",
+          "bg-tremor-background ring-tremor-ring shadow-tremor-card",
+          "dark:bg-dark-tremor-background dark:ring-dark-tremor-ring dark:shadow-dark-tremor-card",
+          if(is_nil(@decoration_color),
+            do: "border-tremor-brand dark:border-dark-tremor-brand",
+            else:
+              Tails.classes([
+                Theme.get_color_style(@decoration_color, "border", "border")
+              ])
+          ),
+          Theme.get_decoration_alignment_style(@decoration),
+          Theme.get_spacing_style("three_xl", "padding_all"),
+          if(is_nil(@class), do: "", else: @class)
+        ])
+      }
+      {@rest}
+    >
+      <%= render_slot(@inner_block) %>
+    </div>
     """
   end
 end

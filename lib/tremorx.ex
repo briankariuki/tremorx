@@ -13,7 +13,8 @@ defmodule Tremorx do
         Legend,
         Layout,
         Button,
-        Input
+        Input,
+        Image
       }
     end
   end
