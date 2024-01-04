@@ -15,7 +15,8 @@ defmodule Tremorx do
         Button,
         Input,
         Image,
-        Menu
+        Menu,
+        Bar
       }
     end
   end

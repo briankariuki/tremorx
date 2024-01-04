@@ -9,19 +9,20 @@ defmodule Tremorx.Components.Input do
 
   import Tremorx.Assets
 
-  attr(:type, :string, values: ~w(text password email url number))
-  attr(:value, :any, default: nil)
-  attr(:name, :any, default: nil)
-  attr(:error, :boolean, default: false)
-  attr(:error_message, :string)
-  attr(:disabled, :boolean, default: false)
-  slot(:icon, required: false)
-  slot(:stepper, required: false)
-  attr(:input_class_name, :string)
-  attr(:class, :string, default: nil)
-  attr(:placeholder, :string, default: "Type...")
-  attr(:autofocus, :boolean, default: false)
-  attr(:rest, :global)
+  attr :type, :string, values: ~w(text password email url number)
+  attr :value, :any, default: nil
+  attr :name, :any, default: nil
+  attr :error, :boolean, default: false
+  attr :error_message, :string
+  attr :disabled, :boolean, default: false
+  slot :icon, required: false
+  slot :stepper, required: false
+  attr :input_class_name, :string
+  attr :class, :string, default: nil
+  attr :placeholder, :string, default: "Type..."
+  attr :autofocus, :boolean, default: false
+  attr :required, :any, default: nil
+  attr :rest, :global
 
   @doc false
   defp base_input(assigns) do
@@ -97,6 +98,7 @@ defmodule Tremorx.Components.Input do
               )
             ])
           }
+          required={@required}
           {@rest}
         />
 
@@ -165,16 +167,17 @@ defmodule Tremorx.Components.Input do
     """
   end
 
-  attr(:value, :any, default: "")
-  attr(:name, :any, default: "")
-  attr(:error, :boolean, default: false)
-  attr(:error_message, :string)
-  attr(:disabled, :boolean, default: false)
-  attr(:textarea_class_name, :string)
-  attr(:class, :string, default: nil)
-  attr(:placeholder, :string, default: "Type...")
-  attr(:autofocus, :boolean, default: false)
-  attr(:rest, :global)
+  attr :value, :any, default: ""
+  attr :name, :any, default: ""
+  attr :error, :boolean, default: false
+  attr :error_message, :string
+  attr :disabled, :boolean, default: false
+  attr :textarea_class_name, :string
+  attr :class, :string, default: nil
+  attr :placeholder, :string, default: "Type..."
+  attr :autofocus, :boolean, default: false
+  attr :required, :any, default: nil
+  attr :rest, :global
 
   @doc false
   defp base_textarea(assigns) do
@@ -209,6 +212,7 @@ defmodule Tremorx.Components.Input do
             if(is_nil(@class), do: "", else: @class)
           ])
         }
+        required={@required}
         {@rest}
       />
 
@@ -227,24 +231,24 @@ defmodule Tremorx.Components.Input do
     """
   end
 
-  attr(:id, :any, default: nil)
-  attr(:name, :any, default: nil)
-  attr(:value, :any)
-  attr(:type, :string, default: "text", values: ~w(text password url email))
-  attr(:error, :boolean, default: false)
-  attr(:disabled, :boolean, default: false)
-  attr(:autofocus, :boolean, default: false)
-  attr(:error_message, :string)
-  attr(:class, :string)
-  attr(:placeholder, :string, default: "Type...")
-  slot(:icon)
+  attr :id, :any, default: nil
+  attr :name, :any, default: nil
+  attr :value, :any
+  attr :type, :string, default: "text", values: ~w(text password url email)
+  attr :error, :boolean, default: false
+  attr :disabled, :boolean, default: false
+  attr :autofocus, :boolean, default: false
+  attr :error_message, :string
+  attr :class, :string
+  attr :placeholder, :string, default: "Type..."
+  attr :required, :any, default: nil
+  slot :icon
 
-  attr(:field, Phoenix.HTML.FormField,
+  attr :field, Phoenix.HTML.FormField,
     doc: "a form field struct retrieved from the form, for example: @form[:email]",
     default: nil
-  )
 
-  attr(:rest, :global)
+  attr :rest, :global
 
   @doc """
   Renders a text input field
@@ -265,20 +269,20 @@ defmodule Tremorx.Components.Input do
     |> base_input()
   end
 
-  attr(:id, :any, default: nil)
-  attr(:name, :any, default: nil)
-  attr(:value, :any)
-  attr(:error, :boolean, default: false)
-  attr(:disabled, :boolean, default: false)
-  attr(:error_message, :string)
-  attr(:class, :string)
-  attr(:placeholder, :string, default: "Type...")
+  attr :id, :any, default: nil
+  attr :name, :any, default: nil
+  attr :value, :any
+  attr :error, :boolean, default: false
+  attr :disabled, :boolean, default: false
+  attr :error_message, :string
+  attr :class, :string
+  attr :placeholder, :string, default: "Type..."
+  attr :required, :any, default: nil
 
-  attr(:field, Phoenix.HTML.FormField,
+  attr :field, Phoenix.HTML.FormField,
     doc: "a form field struct retrieved from the form, for example: @form[:email]"
-  )
 
-  attr(:rest, :global)
+  attr :rest, :global
 
   @doc """
   Renders a text area input field
