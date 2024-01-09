@@ -1,8 +1,8 @@
 # Tremorx
 
-A Phoenix component library for using tremor
+An Elixir Phoenix component library inspired by [Tremor](https://www.tremor.so/) - The react library to build dashboards fast.
 
-**TODO: Add description**
+**This project is still in development.**
 
 ## Installation
 
@@ -12,7 +12,8 @@ by adding `tremorx` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:tremorx, "~> 0.1.0"}
+    #{:tremorx, "~> 0.1.0"}
+    {:tremorx, git: "https://github.com/briankariuki/tremorx.git"}
   ]
 end
 ```
