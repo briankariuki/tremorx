@@ -195,6 +195,24 @@ defmodule Tremorx.Theme do
   end
 
   @doc """
+  Returns the value from badge_proportion for  size
+  """
+  def get_badge_proportion_style(size, key) do
+    badge_proportion()
+    |> Map.get(String.to_atom(size))
+    |> Map.get(String.to_atom(key))
+  end
+
+  @doc """
+  Returns the value from badge_proportion icon only for size and key
+  """
+  def get_badge_proportion_icon_only_style(size, key) do
+    badge_proportion_icon()
+    |> Map.get(String.to_atom(size))
+    |> Map.get(String.to_atom(key))
+  end
+
+  @doc """
   Returns the value from icon_size for variant and size
   """
   def get_icon_size_style(size, key) do
@@ -882,5 +900,71 @@ defmodule Tremorx.Theme do
           }
         }
     end
+  end
+
+  @doc """
+  Defines the badge proportions
+  """
+  def badge_proportion() do
+    %{
+      xs: %{
+        padding_x: "px-2",
+        padding_y: "py-0.5",
+        fontSize: "text-xs"
+      },
+      sm: %{
+        padding_x: "px-2.5",
+        padding_y: "py-0.5",
+        fontSize: "text-sm"
+      },
+      md: %{
+        padding_x: "px-3",
+        padding_y: "py-0.5",
+        fontSize: "text-md"
+      },
+      lg: %{
+        padding_x: "px-3.5",
+        padding_y: "py-0.5",
+        fontSize: "text-lg"
+      },
+      xl: %{
+        padding_x: "px-4",
+        padding_y: "py-1",
+        fontSize: "text-xl"
+      }
+    }
+  end
+
+  @doc """
+  Defines the badge proportions icon only
+  """
+  def badge_proportion_icon() do
+    %{
+      xs: %{
+        padding_x: "px-2",
+        padding_y: "py-0.5",
+        fontSize: "text-xs"
+      },
+      sm: %{
+        padding_x: "px-2.5",
+        padding_y: "py-1",
+        fontSize: "text-sm"
+      },
+      md: %{
+        padding_x: "px-3",
+        padding_y: "py-1.5",
+        fontSize: "text-md"
+      },
+      lg: %{
+        padding_x: "px-3.5",
+        padding_y: "py-1.5",
+        fontSize: "text-lg"
+      },
+      xl: %{
+        padding_x: "px-3.5",
+        padding_y: "py-1.5",
+        fontSize: "text-xl"
+      }
+    }
   end
 end
