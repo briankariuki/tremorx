@@ -204,6 +204,15 @@ defmodule Tremorx.Theme do
   end
 
   @doc """
+  Returns the value from badge_icon for size
+  """
+  def get_badge_icon_style(size, key) do
+    badge_icon()
+    |> Map.get(String.to_atom(size))
+    |> Map.get(String.to_atom(key))
+  end
+
+  @doc """
   Returns the value from badge_proportion icon only for size and key
   """
   def get_badge_proportion_icon_only_style(size, key) do
@@ -964,6 +973,34 @@ defmodule Tremorx.Theme do
         padding_x: "px-3.5",
         padding_y: "py-1.5",
         fontSize: "text-xl"
+      }
+    }
+  end
+
+  @doc """
+  Defines the badge icons size
+  """
+  def badge_icon() do
+    %{
+      xs: %{
+        height: "h-4",
+        width: "w-4"
+      },
+      sm: %{
+        height: "h-4",
+        width: "w-4"
+      },
+      md: %{
+        height: "h-4",
+        width: "w-4"
+      },
+      lg: %{
+        height: "h-5",
+        width: "w-5"
+      },
+      xl: %{
+        height: "h-6",
+        width: "w-6"
       }
     }
   end

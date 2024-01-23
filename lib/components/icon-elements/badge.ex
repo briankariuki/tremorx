@@ -54,9 +54,9 @@ defmodule Tremorx.Components.Badge do
         class={
           Tails.classes([
             Theme.make_class_name("Badge", "icon"),
-            "shrink-0 -ml-1 mr-1.5 flex items-center",
-            Theme.get_icon_size_style(@size, "height"),
-            Theme.get_icon_size_style(@size, "width")
+            "shrink-0 -ml-1 mr-1.5 flex flex-col items-center justify-center",
+            Theme.get_badge_icon_style(@size, "height"),
+            Theme.get_badge_icon_style(@size, "width")
           ])
         }
       >
@@ -78,6 +78,8 @@ defmodule Tremorx.Components.Badge do
   attr :class, :string, default: nil
   attr :size, :string, default: "sm", values: ~w(xs sm md lg xl)
 
+  attr :increase_positive, :boolean, default: true
+
   attr :delta_type, :string,
     default: "increase",
     values: ~w(increase moderate_increase decrease moderate_decrease unchanged)
@@ -89,6 +91,17 @@ defmodule Tremorx.Components.Badge do
   Renders a badge delta
   """
   def badge_delta(assigns) do
+    assigns =
+      assigns
+      |> assign(
+        delta_type:
+          cond do
+            assigns[:delta_type] == "unchanged" -> assigns[:delta_type]
+            assigns[:increase_positive] == true -> assigns[:delta_type]
+            true -> map_inputs_to_delta_type(assigns[:delta_type])
+          end
+      )
+
     ~H"""
     <span
       class={
@@ -108,9 +121,12 @@ defmodule Tremorx.Components.Badge do
       <div class={
         Tails.classes([
           Theme.make_class_name("Badge", "icon"),
-          "shrink-0 flex items-center",
-          if(@inner_block != [], do: "-ml-1 mr-1.5", else: Theme.get_icon_size_style(@size, "height")),
-          Theme.get_icon_size_style(@size, "width")
+          "shrink-0 flex items-center justify-center flex-col",
+          if(@inner_block != [],
+            do: "-ml-1 mr-1.5",
+            else: Theme.get_badge_icon_style(@size, "height")
+          ),
+          Theme.get_badge_icon_style(@size, "width")
         ])
       }>
         <Assets.arrow_up_icon :if={@delta_type == "increase"} />
@@ -130,6 +146,16 @@ defmodule Tremorx.Components.Badge do
       </p>
     </span>
     """
+  end
+
+  defp map_inputs_to_delta_type(delta) do
+    case delta do
+      "increase" -> "decrease"
+      "moderate_increase" -> "moderate_decrease"
+      "decrease" -> "increase"
+      "moderate_decrease" -> "moderate_increase"
+      _ -> ""
+    end
   end
 
   defp get_badge_delta_color(delta, key) do
