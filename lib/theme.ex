@@ -195,6 +195,33 @@ defmodule Tremorx.Theme do
   end
 
   @doc """
+  Returns the value from badge_proportion for  size
+  """
+  def get_badge_proportion_style(size, key) do
+    badge_proportion()
+    |> Map.get(String.to_atom(size))
+    |> Map.get(String.to_atom(key))
+  end
+
+  @doc """
+  Returns the value from badge_icon for size
+  """
+  def get_badge_icon_style(size, key) do
+    badge_icon()
+    |> Map.get(String.to_atom(size))
+    |> Map.get(String.to_atom(key))
+  end
+
+  @doc """
+  Returns the value from badge_proportion icon only for size and key
+  """
+  def get_badge_proportion_icon_only_style(size, key) do
+    badge_proportion_icon()
+    |> Map.get(String.to_atom(size))
+    |> Map.get(String.to_atom(key))
+  end
+
+  @doc """
   Returns the value from icon_size for variant and size
   """
   def get_icon_size_style(size, key) do
@@ -882,5 +909,99 @@ defmodule Tremorx.Theme do
           }
         }
     end
+  end
+
+  @doc """
+  Defines the badge proportions
+  """
+  def badge_proportion() do
+    %{
+      xs: %{
+        padding_x: "px-2",
+        padding_y: "py-0.5",
+        fontSize: "text-xs"
+      },
+      sm: %{
+        padding_x: "px-2.5",
+        padding_y: "py-0.5",
+        fontSize: "text-sm"
+      },
+      md: %{
+        padding_x: "px-3",
+        padding_y: "py-0.5",
+        fontSize: "text-md"
+      },
+      lg: %{
+        padding_x: "px-3.5",
+        padding_y: "py-0.5",
+        fontSize: "text-lg"
+      },
+      xl: %{
+        padding_x: "px-4",
+        padding_y: "py-1",
+        fontSize: "text-xl"
+      }
+    }
+  end
+
+  @doc """
+  Defines the badge proportions icon only
+  """
+  def badge_proportion_icon() do
+    %{
+      xs: %{
+        padding_x: "px-2",
+        padding_y: "py-0.5",
+        fontSize: "text-xs"
+      },
+      sm: %{
+        padding_x: "px-2.5",
+        padding_y: "py-1",
+        fontSize: "text-sm"
+      },
+      md: %{
+        padding_x: "px-3",
+        padding_y: "py-1.5",
+        fontSize: "text-md"
+      },
+      lg: %{
+        padding_x: "px-3.5",
+        padding_y: "py-1.5",
+        fontSize: "text-lg"
+      },
+      xl: %{
+        padding_x: "px-3.5",
+        padding_y: "py-1.5",
+        fontSize: "text-xl"
+      }
+    }
+  end
+
+  @doc """
+  Defines the badge icons size
+  """
+  def badge_icon() do
+    %{
+      xs: %{
+        height: "h-4",
+        width: "w-4"
+      },
+      sm: %{
+        height: "h-4",
+        width: "w-4"
+      },
+      md: %{
+        height: "h-4",
+        width: "w-4"
+      },
+      lg: %{
+        height: "h-5",
+        width: "w-5"
+      },
+      xl: %{
+        height: "h-6",
+        width: "w-6"
+      }
+    }
   end
 end
