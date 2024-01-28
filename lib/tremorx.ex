@@ -5,9 +5,7 @@ defmodule Tremorx do
 
   defmacro __using__(_) do
     quote do
-      import Tremorx.Theme
-
-      import Tremorx.Components.{
+      alias Tremorx.Components.{
         Callout,
         Text,
         Legend,
@@ -16,7 +14,12 @@ defmodule Tremorx do
         Input,
         Image,
         Menu,
-        Bar
+        Bar,
+        Table,
+        Tab,
+        Badge,
+        Select,
+        List
       }
     end
   end
