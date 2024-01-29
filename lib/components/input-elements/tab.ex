@@ -50,49 +50,53 @@ defmodule Tremorx.Components.Tab do
       }
       {@rest}
     >
-      <div
-        class={
-          Tails.classes([
-            Theme.make_class_name("TabList", "root"),
-            "justify-start overflow-x-clip",
-            get_tablist_styles(@variant),
-            if(@tab_list_class, do: @tab_list_class, else: "")
-          ])
-        }
-        role="tablist"
-        aria-labelledby={"tablist-#{@id}"}
-      >
-        <button
-          :for={{tab, index} <- Enum.with_index(@tab)}
+      <div class="flex items-center">
+        <div
           class={
             Tails.classes([
-              Theme.make_class_name("tab", "root"),
-              "flex whitespace-nowrap truncate max-w-xs outline-none focus:ring-0 text-tremor-default transition duration-100",
-              if(@color,
-                do: Theme.get_color_style(@color, "text", "text"),
-                else:
-                  if(@variant == "solid",
-                    do:
-                      "ui-selected:text-tremor-content-emphasis dark:ui-selected:text-dark-tremor-content-emphasis",
-                    else: "ui-selected:text-tremor-brand dark:ui-selected:text-dark-tremor-brand"
-                  )
-              ),
-              get_tab_styles(@variant, @color),
-              if(@tab_class, do: @tab_class, else: "")
+              Theme.make_class_name("TabList", "root"),
+              "justify-start overflow-x-clip",
+              get_tablist_styles(@variant),
+              if(@tab_list_class, do: @tab_list_class, else: "")
             ])
           }
-          id={"tab-#{index}-#{@id}"}
-          type="button"
-          role="tab"
-          aria-selected={if(index == 0, do: "true", else: "false")}
-          aria-controls={"tabpanel-#{index}-#{@id}"}
-          tabindex={if(index == 0, do: nil, else: "-1")}
-          data-variant={@variant}
+          role="tablist"
+          aria-labelledby={"tablist-#{@id}"}
         >
-          <%= render_slot(tab) %>
-        </button>
+          <button
+            :for={{tab, index} <- Enum.with_index(@tab)}
+            class={
+              Tails.classes([
+                Theme.make_class_name("tab", "root"),
+                "flex whitespace-nowrap truncate max-w-xs outline-none focus:ring-0 text-tremor-default transition duration-100",
+                if(@color,
+                  do: Theme.get_color_style(@color, "text", "text"),
+                  else:
+                    if(@variant == "solid",
+                      do:
+                        "ui-selected:text-tremor-content-emphasis dark:ui-selected:text-dark-tremor-content-emphasis",
+                      else: "ui-selected:text-tremor-brand dark:ui-selected:text-dark-tremor-brand"
+                    )
+                ),
+                get_tab_styles(@variant, @color),
+                if(@tab_class, do: @tab_class, else: "")
+              ])
+            }
+            id={"tab-#{index}-#{@id}"}
+            type="button"
+            role="tab"
+            aria-selected={if(index == 0, do: "true", else: "false")}
+            aria-controls={"tabpanel-#{index}-#{@id}"}
+            tabindex={if(index == 0, do: nil, else: "-1")}
+            data-variant={@variant}
+          >
+            <%= render_slot(tab) %>
+          </button>
+        </div>
 
-        <%= render_slot(@tab_content) %>
+        <div class="flex-1">
+          <%= render_slot(@tab_content) %>
+        </div>
       </div>
 
       <div
