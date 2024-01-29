@@ -72,6 +72,7 @@ defmodule Tremorx.Components.Table do
 
   attr :class, :string, default: nil
   attr :rest, :global
+  attr :colspan, :string, default: "1"
   slot :inner_block
 
   @doc """
@@ -87,6 +88,7 @@ defmodule Tremorx.Components.Table do
           if(is_nil(@class), do: "", else: @class)
         ])
       }
+      colspan={@colspan}
       {@rest}
     >
       <%= render_slot(@inner_block) %>
@@ -108,7 +110,7 @@ defmodule Tremorx.Components.Table do
         Tails.classes([
           Theme.make_class_name("TableFoot", "root"),
           # common
-          "text-left font-medium border-t-[1px] ",
+          "text-left font-medium border-t-[1px]",
           # light
           "text-tremor-content border-tremor-border",
           # dark
@@ -125,6 +127,7 @@ defmodule Tremorx.Components.Table do
 
   attr :class, :string, default: nil
   attr :rest, :global
+  attr :colspan, :string, default: "1"
   slot :inner_block
 
   @doc """
@@ -145,6 +148,7 @@ defmodule Tremorx.Components.Table do
           if(is_nil(@class), do: "", else: @class)
         ])
       }
+      colspan={@colspan}
       {@rest}
     >
       <%= render_slot(@inner_block) %>
@@ -183,6 +187,7 @@ defmodule Tremorx.Components.Table do
 
   attr :class, :string, default: nil
   attr :rest, :global
+  attr :colspan, :string, default: "1"
   slot :inner_block
 
   @doc """
@@ -203,6 +208,7 @@ defmodule Tremorx.Components.Table do
           if(is_nil(@class), do: "", else: @class)
         ])
       }
+      colspan={@colspan}
       {@rest}
     >
       <%= render_slot(@inner_block) %>
