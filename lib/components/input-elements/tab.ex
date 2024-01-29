@@ -29,6 +29,7 @@ defmodule Tremorx.Components.Tab do
     doc: "CSS classes styles to apply to the tab button"
 
   slot :tab, doc: "The tab button"
+  slot :tab_content, doc: "The content after the tab buttons"
   slot :tabpanel, doc: "The tab content"
   attr :rest, :global
 
@@ -90,6 +91,8 @@ defmodule Tremorx.Components.Tab do
         >
           <%= render_slot(tab) %>
         </button>
+
+        <%= render_slot(@tab_content) %>
       </div>
 
       <div
