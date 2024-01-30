@@ -49,6 +49,8 @@ defmodule Tremorx.Components.Tab do
     >
       <div class="flex items-center">
         <div
+          id={"tablist-#{@id}"}
+          phx-update="ignore"
           class={
             Tails.classes([
               Theme.make_class_name("TabList", "root"),
