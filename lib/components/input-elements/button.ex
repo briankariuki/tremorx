@@ -14,7 +14,7 @@ defmodule Tremorx.Components.Button do
   attr(:class, :string, default: nil)
   attr(:variant, :string, default: "primary", values: ~w(primary secondary light))
   attr(:type, :string, default: "button", values: ~w(button submit))
-  attr(:disabled, :boolean, default: nil)
+  attr(:disabled, :boolean, default: false)
   attr(:loading, :boolean, default: false)
   attr(:loading_text, :string, default: nil)
   attr(:tooltip, :string, default: nil)
