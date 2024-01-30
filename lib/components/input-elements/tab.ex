@@ -110,6 +110,7 @@ defmodule Tremorx.Components.Tab do
       >
         <div
           :for={{panel, index} <- Enum.with_index(@tabpanel)}
+          phx-update="ignore"
           id={"tabpanel-#{index}-#{@id}"}
           role="tabpanel"
           tabindex="0"
