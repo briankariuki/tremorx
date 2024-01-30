@@ -36,11 +36,13 @@ defmodule Tremorx.Components.Button do
             Theme.get_icon_size_style(assigns[:size], "width"),
             Theme.get_icon_size_style(assigns[:size], "height")
           ]),
-        is_disabled: assigns[:loading] || assigns[:disabled],
-        show_icon: assigns[:icon] != [] || assigns[:loading],
-        show_loading_text: assigns[:loading] && assigns[:loading_text] != nil,
+        is_disabled: assigns[:loading] == true || assigns[:disabled] == true,
+        show_icon: assigns[:icon] != [] || assigns[:loading] == true,
+        show_loading_text: assigns[:loading] == true && assigns[:loading_text] != nil,
         need_icon_margin:
-          if(assigns[:inner_block] != [] || (assigns[:loading] && assigns[:loading_text] != nil),
+          if(
+            assigns[:inner_block] != [] ||
+              (assigns[:loading] == true && assigns[:loading_text] != nil),
             do: true,
             else: false
           )

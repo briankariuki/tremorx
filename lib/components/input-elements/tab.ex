@@ -50,7 +50,6 @@ defmodule Tremorx.Components.Tab do
       <div class="flex items-center">
         <div
           id={"tablist-#{@id}"}
-          phx-update="ignore"
           class={
             Tails.classes([
               Theme.make_class_name("TabList", "root"),
@@ -110,7 +109,6 @@ defmodule Tremorx.Components.Tab do
       >
         <div
           :for={{panel, index} <- Enum.with_index(@tabpanel)}
-          phx-update="ignore"
           id={"tabpanel-#{index}-#{@id}"}
           role="tabpanel"
           tabindex="0"
