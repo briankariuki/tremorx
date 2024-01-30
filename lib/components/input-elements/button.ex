@@ -72,14 +72,14 @@ defmodule Tremorx.Components.Button do
           Map.get(@button_color_style, :bg_color),
           Map.get(@button_color_style, :border_color),
           Map.get(@button_color_style, :hover_border_color),
-          if(is_nil(@is_disabled),
-            do:
+          if(@is_disabled,
+            do: "opacity-50 cursor-not-allowed",
+            else:
               Tails.classes([
                 Map.get(@button_color_style, :hover_text_color),
                 Map.get(@button_color_style, :hover_bg_color),
                 Map.get(@button_color_style, :hover_border_color)
-              ]),
-            else: "opacity-50 cursor-not-allowed"
+              ])
           ),
           if(is_nil(@class), do: "", else: @class)
         ])
