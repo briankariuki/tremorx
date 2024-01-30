@@ -9,6 +9,7 @@ defmodule Tremorx.Components.Input do
 
   import Tremorx.Assets
 
+  attr :id, :string, default: "input"
   attr :type, :string, values: ~w(text password email url number)
   attr :value, :any, default: nil
   attr :name, :any, default: nil
@@ -29,14 +30,11 @@ defmodule Tremorx.Components.Input do
     assigns =
       assigns
       |> assign(has_selection: has_selection(assigns[:value]))
-      |> assign_new(:input_id, fn ->
-        "input_#{to_string(System.unique_integer([:positive]))}"
-      end)
 
     ~H"""
-    <div id={@input_id} data-autofocus={@autofocus} data-focus="false" phx-hook="Input">
+    <div id={@id} data-autofocus={@autofocus} data-focus="false" phx-hook="Input">
       <div
-        id={"#{@input_id}_wrapper"}
+        id={"#{@id}_wrapper"}
         class={
           Tails.classes([
             Theme.make_class_name(@input_class_name, "root"),
@@ -68,7 +66,7 @@ defmodule Tremorx.Components.Input do
         </div>
 
         <input
-          id={"#{@input_id}_field"}
+          id={"#{@id}_field"}
           name={@name}
           type={@type}
           placeholder={@placeholder}
@@ -104,7 +102,7 @@ defmodule Tremorx.Components.Input do
 
         <button
           :if={@type == "password" && @disabled == false}
-          id={"#{@input_id}_eye_btn"}
+          id={"#{@id}_eye_btn"}
           type="button"
           class={
             Tails.classes([
@@ -114,7 +112,7 @@ defmodule Tremorx.Components.Input do
           }
         >
           <.eye_off_icon
-            id={"#{@input_id}_eye_off_icon"}
+            id={"#{@id}_eye_off_icon"}
             class={
               Tails.classes([
                 "flex-none hidden h-5 w-5 transition",
@@ -167,6 +165,7 @@ defmodule Tremorx.Components.Input do
     """
   end
 
+  attr :id, :string, default: "textarea"
   attr :value, :any, default: ""
   attr :name, :any, default: ""
   attr :error, :boolean, default: false
@@ -184,15 +183,12 @@ defmodule Tremorx.Components.Input do
     assigns =
       assigns
       |> assign(has_selection: has_selection(assigns[:value]))
-      |> assign_new(:textarea_id, fn ->
-        "textarea_#{to_string(System.unique_integer([:positive]))}"
-      end)
 
     ~H"""
-    <div id={@textarea_id}>
+    <div id={@id}>
       <textarea
         name={@name}
-        id={"#{@textarea_id}_field"}
+        id={"#{@id}_field"}
         placeholder={@placeholder}
         disabled={@disabled}
         value={Phoenix.HTML.Form.normalize_value("text", @value || "")}
@@ -231,7 +227,7 @@ defmodule Tremorx.Components.Input do
     """
   end
 
-  attr :id, :any, default: nil
+  attr :id, :string, default: nil
   attr :name, :any, default: nil
   attr :value, :any
   attr :type, :string, default: "text", values: ~w(text password url email)
@@ -269,7 +265,7 @@ defmodule Tremorx.Components.Input do
     |> base_input()
   end
 
-  attr :id, :any, default: nil
+  attr :id, :string, default: nil
   attr :name, :any, default: nil
   attr :value, :any
   attr :error, :boolean, default: false

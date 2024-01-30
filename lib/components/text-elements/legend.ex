@@ -13,6 +13,7 @@ defmodule Tremorx.Components.Legend do
   Renders a legend
   """
 
+  attr :id, :string, default: "tabs"
   attr(:class, :string, required: false, default: nil)
   attr(:active, :string, required: false, default: nil)
   attr(:enable_slider, :boolean, required: false, default: nil)
@@ -29,17 +30,11 @@ defmodule Tremorx.Components.Legend do
   slot(:scroll_right_icon, required: false)
 
   def legend(assigns) do
-    assigns =
-      assigns
-      |> assign_new(:legend_id, fn ->
-        "legend_#{to_string(System.unique_integer([:positive]))}"
-      end)
-
     ~H"""
     <ol
-      id={@legend_id}
+      id={@id}
       data-enable-slider={to_string(@enable_slider)}
-      phx-mounted={JS.dispatch("legend_mounted", detail: %{id: @legend_id})}
+      phx-mounted={JS.dispatch("legend_mounted", detail: %{id: @id})}
       class={
         Tails.classes([
           Theme.make_class_name("legend", "root"),
@@ -96,16 +91,16 @@ defmodule Tremorx.Components.Legend do
         }
       >
         <.scroll_button
-          id={"left_btn_#{@legend_id}"}
+          id={"left_btn_#{@id}"}
           disable="false"
-          on_click={JS.dispatch("scroll_legend", detail: %{id: @legend_id, direction: "left"})}
+          on_click={JS.dispatch("scroll_legend", detail: %{id: @id, direction: "left"})}
         >
           <%= render_slot(@scroll_left_icon) %>
         </.scroll_button>
         <.scroll_button
-          id={"right_btn_#{@legend_id}"}
+          id={"right_btn_#{@id}"}
           disable="false"
-          on_click={JS.dispatch("scroll_legend", detail: %{id: @legend_id, direction: "right"})}
+          on_click={JS.dispatch("scroll_legend", detail: %{id: @id, direction: "right"})}
         >
           <%= render_slot(@scroll_right_icon) %>
         </.scroll_button>

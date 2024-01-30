@@ -34,7 +34,7 @@ defmodule Tremorx.Components.Menu do
     doc:
       "CSS classes styles to apply to the menu item container. Use this to style active and hover states"
 
-  attr :id, :string
+  attr :id, :string, default: "menu"
   attr :rest, :global
 
   attr :enter, :string,
@@ -65,10 +65,6 @@ defmodule Tremorx.Components.Menu do
   Renders the dropdown menu
   """
   def menu(assigns) do
-    assigns =
-      assigns
-      |> assign_new(:id, fn -> "menu_#{to_string(System.unique_integer([:positive]))}" end)
-
     ~H"""
     <div
       id={@id}

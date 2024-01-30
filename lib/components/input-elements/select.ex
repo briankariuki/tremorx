@@ -16,7 +16,7 @@ defmodule Tremorx.Components.Select do
   attr :disabled, :boolean, default: false
   attr :enable_clear, :boolean, default: true
   attr :rest, :global
-  attr :id, :string
+  attr :id, :string, default: "select"
   slot :icon
   slot :item
 
@@ -51,15 +51,8 @@ defmodule Tremorx.Components.Select do
     assigns =
       assigns
       |> assign(has_selection: has_selection(assigns[:value]))
-      |> assign_new(:id, fn -> "select_#{to_string(System.unique_integer([:positive]))}" end)
 
     ~H"""
-    <%!-- <select {@rest}>
-      <item value="0">Select car:</item>
-      <item value="1">Audi</item>
-      <item value="2">BMW</item>
-    </select> --%>
-
     <div
       id={@id}
       class={

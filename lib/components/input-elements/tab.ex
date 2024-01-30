@@ -8,6 +8,7 @@ defmodule Tremorx.Components.Tab do
 
   use Phoenix.Component
 
+  attr :id, :string, default: "tabs"
   attr :variant, :string, default: "line"
   attr :color, :string, default: nil
   attr :class, :string, default: nil
@@ -34,10 +35,6 @@ defmodule Tremorx.Components.Tab do
   attr :rest, :global
 
   def tabs(assigns) do
-    assigns =
-      assigns
-      |> assign_new(:id, fn -> "tabs_#{to_string(System.unique_integer([:positive]))}" end)
-
     ~H"""
     <div
       id={@id}
