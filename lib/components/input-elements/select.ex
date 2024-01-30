@@ -19,6 +19,7 @@ defmodule Tremorx.Components.Select do
   attr :id, :string, default: "select"
   slot :icon
   slot :item
+  attr :name, :any, default: nil
 
   attr :enter, :string,
     doc: "CSS class to apply on enter transition",
@@ -73,9 +74,16 @@ defmodule Tremorx.Components.Select do
       data-leave-from={@leave_from}
       data-leave-to={@leave_to}
       data-default-value={@default_value}
-      {@rest}
     >
-      <select type="hidden" class="hidden" value={@default_value} data-select-hidden="select" />
+      <select
+        id={"#{@id}_field"}
+        name={@name}
+        type="hidden"
+        class="hidden"
+        value={@default_value || @value}
+        data-select-hidden="select"
+        {@rest}
+      />
 
       <button
         type="button"
