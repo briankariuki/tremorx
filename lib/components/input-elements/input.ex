@@ -230,7 +230,7 @@ defmodule Tremorx.Components.Input do
   attr :id, :string, default: nil
   attr :name, :any, default: nil
   attr :value, :any
-  attr :type, :string, default: "text", values: ~w(text password url email)
+  attr :type, :string, default: "text", values: ~w(text password url email number)
   attr :error, :boolean, default: false
   attr :disabled, :boolean, default: false
   attr :autofocus, :boolean, default: false
