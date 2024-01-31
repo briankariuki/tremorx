@@ -123,7 +123,7 @@ defmodule Tremorx.Components.Input do
           />
 
           <.eye_icon
-            id={"#{@input_id}_eye_icon"}
+            id={"#{@id}_eye_icon"}
             class={
               Tails.classes([
                 "flex-none h-5 w-5 transition",
