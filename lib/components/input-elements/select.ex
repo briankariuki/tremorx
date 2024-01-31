@@ -75,7 +75,7 @@ defmodule Tremorx.Components.Select do
       data-leave-to={@leave_to}
       data-default-value={@default_value || @value}
     >
-      <select name={@name} type="hidden" class="hidden" data-select-hidden="select" {@rest} />
+      <select id={@id} name={@name} type="hidden" class="hidden" data-select-hidden="select" {@rest} />
 
       <button
         type="button"
