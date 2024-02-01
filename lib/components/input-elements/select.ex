@@ -14,7 +14,7 @@ defmodule Tremorx.Components.Select do
   attr :value, :string, default: nil
   attr :default_value, :string, default: nil
   attr :disabled, :boolean, default: false
-  attr :required, :boolean, default: false
+  attr :required, :any, default: false
   attr :enable_clear, :boolean, default: true
   attr :rest, :global
   attr :id, :string, default: "select"
@@ -75,14 +75,15 @@ defmodule Tremorx.Components.Select do
       data-leave-from={@leave_from}
       data-leave-to={@leave_to}
       data-default-value={@default_value || @value}
-      {@rest}
     >
       <input
+        id={"#{@id}_field"}
         name={@name}
         type="hidden"
         class="hidden"
         data-select-hidden="select"
         required={@required}
+        {@rest}
       />
 
       <button
