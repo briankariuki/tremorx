@@ -86,6 +86,7 @@ defmodule Tremorx.Components.Menu do
       {@rest}
     >
       <button
+        type="button"
         class={
           Tails.classes([
             Theme.make_class_name("menu", "button"),
