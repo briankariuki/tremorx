@@ -19,7 +19,8 @@ defmodule Tremorx do
         Tab,
         Badge,
         Select,
-        List
+        List,
+        Tooltip
       }
     end
   end
