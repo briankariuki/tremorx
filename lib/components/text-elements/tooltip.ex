@@ -25,6 +25,24 @@ defmodule Tremorx.Components.Tooltip do
     doc: "The theme of the tooltip",
     default: "translucent"
 
+  attr :arrow, :boolean,
+    doc: "Whether to display the tooltip arrow",
+    default: true
+
+  attr :arrow_type, :string,
+    values: ~w(sharp round),
+    doc: "The arrow type displayed by the tooltip",
+    default: "round"
+
+  attr :size, :string,
+    values: ~w(small regular large),
+    doc: "The size of the tooltip",
+    default: "regular"
+
+  attr :touch, :boolean,
+    doc: "Whether to allow touch events for the tooltip",
+    default: true
+
   attr :rest, :global,
     doc: "Other attributes can be passed to tippy using data-tippy-* attributes"
 
@@ -42,6 +60,10 @@ defmodule Tremorx.Components.Tooltip do
       data-animation={@animation}
       data-theme={@theme}
       data-content={@content}
+      data-size={@size}
+      data-arrow={@arrow}
+      data-arrow-type={@arrow_type}
+      data-touch={@touch}
       phx-hook="Tooltip"
       {@rest}
     >
