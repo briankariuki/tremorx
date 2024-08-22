@@ -20,7 +20,9 @@ defmodule Tremorx do
         Badge,
         Select,
         List,
-        Tooltip
+        Tooltip,
+        AreaChart,
+        LineChart
       }
     end
   end

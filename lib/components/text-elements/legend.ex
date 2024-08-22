@@ -254,6 +254,7 @@ defmodule Tremorx.Components.Legend do
       phx-click={if(is_nil(@on_click) == false, do: @on_click, else: nil)}
       phx-value-color={@color}
       phx-value-name={@name}
+      data-legend-name={@name}
       class={
         Tails.classes([
           Theme.make_class_name("legend", "legend-item"),
@@ -269,7 +270,9 @@ defmodule Tremorx.Components.Legend do
             do: "dark:hover:bg-dark-tremor-background-subtle",
             else: ""
           ),
-          if(is_nil(@class), do: "", else: @class)
+          if(is_nil(@class), do: "", else: @class),
+          "[&[data-legend='inactive']>p]:opacity-40",
+          "[&[data-legend='inactive']>svg]:opacity-40"
         ])
       }
     >
