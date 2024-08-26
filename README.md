@@ -297,6 +297,7 @@ Then use like the following
 
 #### Extra Components
   - [x] Dropdown
+  - [x] Tooltip
   - [ ] GeoJSON Map
   
 
