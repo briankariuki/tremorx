@@ -1,37 +1,65 @@
 defmodule Tremorx.MixProject do
   use Mix.Project
 
+  @name :tremorx
+  @version "0.1.0"
+  @description "An Elixir Phoenix component library inspired by [Tremor](https://www.tremor.so/) - The react library to build dashboards fast."
+  @github_url "https://github.com/briankariuki/tremorx"
+
   def project do
     [
-      app: :tremorx,
-      version: "0.1.0",
-      build_path: "../../_build",
-      config_path: "../../config/config.exs",
-      deps_path: "../../deps",
-      lockfile: "../../mix.lock",
+      app: @name,
+      version: @version,
       elixir: "~> 1.15",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      package: package(),
+      deps: deps(),
+      docs: docs(),
+      aliases: aliases()
     ]
   end
 
-  # Run "mix help compile.app" to learn about applications.
   def application do
     [
       extra_applications: [:logger]
     ]
   end
 
-  # Run "mix help deps" to learn about dependencies.
+  defp package() do
+    [
+      maintainers: ["Brian Kariuki"],
+      description: @description,
+      licenses: ["MIT"],
+      links: %{Github: @github_url},
+      files: ~w(mix.exs lib .formatter.exs LICENSE.md  README.md)
+    ]
+  end
+
   defp deps do
     [
       {:phoenix, "~> 1.7.10"},
       {:phoenix_live_view, "~> 0.20"},
       {:tails, "~> 0.1.5"},
       {:ex_doc, "~> 0.24", only: :dev, runtime: false}
-      # {:dep_from_hexpm, "~> 0.3.0"},
-      # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"},
-      # {:sibling_app_in_umbrella, in_umbrella: true}
+    ]
+  end
+
+  def docs() do
+    [
+      homepage_url: @github_url,
+      source_url: @github_url,
+      source_ref: "v#{@version}",
+      main: "readme",
+      extras: [
+        "README.md": [title: "Guide"],
+        "LICENSE.md": [title: "License"]
+      ]
+    ]
+  end
+
+  defp aliases() do
+    [
+      docs: ["docs"]
     ]
   end
 end
