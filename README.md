@@ -1,6 +1,20 @@
 # Tremorx
+<p align="start">
+  <a href="https://hex.pm/packages/tremorx">
+    <img alt="Hex Version" src="https://img.shields.io/hexpm/v/tremorx.svg">
+  </a>
+
+  <a href="https://hexdocs.pm/tremorx">
+    <img alt="Hex Docs" src="http://img.shields.io/badge/hex.pm-docs-green.svg?style=flat">
+  </a>
+
+  <a href="https://opensource.org/license/mit">
+    <img alt="MIT License" src="https://img.shields.io/hexpm/l/tremorx">
+  </a>
+</p>
 
 An Elixir Phoenix component library inspired by [Tremor](https://www.tremor.so/) - The react library to build dashboards fast.
+
 
 **This project is still in development.**
 
@@ -280,6 +294,10 @@ Then use like the following
   - [ ] Progress Circle
   - [ ] Spark Charts
   - [ ] Tracker
+
+#### Extra Components
+  - [x] Dropdown
+  - [ ] GeoJSON Map
   
 
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
