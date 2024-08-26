@@ -17,6 +17,28 @@ def deps do
   ]
 end
 ```
+Add tremorx to the dependecies section in `*_web/assets/package.json` like this:
+```
+{
+  "dependencies": {
+    //Add this line
+    "tremorx": "file:../deps/tremorx"
+    // If in umbrella project
+    "tremorx": "file:../../../deps/tremorx"
+  } 
+}
+```
+Then import the tremorx hooks in your `assets/js/app.js` file like this:
+```
+// Import the hooks
+import { TremorHooks } from "tremorx";
+
+// Add the hooks to the LiveSocket hooks option
+let liveSocket = new LiveSocket("/live", Socket, {
+  hooks: {...MyHooks, ...TremorxHooks},
+});
+```
+
 Configure your `tailwind.config.js` file with the follwing:
 
 Allow tailwind to find css classes defined in this library by adding the following lines to the `content` section in `tailwind.config.js`
@@ -26,7 +48,7 @@ content: [
   "../deps/tremorx/lib/components/**/*.ex",
   "../deps/tremorx/lib/js/*.js",
 ]
-``` 
+```
 
 Configure the tremorx theme tokens by adding these theme extensions in `theme` section in `tailwind.config.js`. You can read more about theming [Here](https://www.tremor.so/docs/getting-started/theming)
 
@@ -171,6 +193,45 @@ safelist: [
 ],
 
 ```
+
+## Components
+
+#### UI Components
+  - [ ] Accordion
+  - [x] Badges
+  - [x] Button
+  - [x] Callout
+  - [x] Card
+  - [ ] Date range picker
+  - [ ] Dialog
+  - [x] Divider
+  - [x] Icons
+  - [x] Legend
+  - [x] List
+  - [ ] Number Input
+  - [x] Select
+  - [ ] Switch
+  - [x] Table
+  - [x] Tabs
+  - [x] Text Input
+  - [x] Textarea
+
+#### Visualization Components
+  - [x] Area Chart
+  - [x] Bar Chart
+  - [ ] Donut Chart
+  - [x] Line Chart
+  - [ ] Scatter Chart
+  - [ ] Funnel Chart
+  - [ ] Bar List
+  - [x] Progress Bar
+  - [ ] Marker Bar
+  - [ ] Delta Bar
+  - [ ] Category Bar
+  - [ ] Progress Circle
+  - [ ] Spark Charts
+  - [ ] Tracker
+  
 
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can

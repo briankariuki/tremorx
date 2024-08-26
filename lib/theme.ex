@@ -47,7 +47,9 @@ defmodule Tremorx.Theme do
   Returns the color classes using the color, palette and type
   """
   def get_color_style(color, palette, type) do
-    color_names(color, color_palette() |> Keyword.fetch!(String.to_atom(palette)))
+    palette = color_palette() |> Keyword.fetch!(String.to_atom(palette))
+
+    color_names(color, palette)
     |> Keyword.fetch!(String.to_atom("#{type}_color"))
   end
 

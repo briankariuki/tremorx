@@ -22,7 +22,8 @@ defmodule Tremorx do
         List,
         Tooltip,
         AreaChart,
-        LineChart
+        LineChart,
+        BarChart
       }
     end
   end
