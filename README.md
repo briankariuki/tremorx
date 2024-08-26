@@ -39,6 +39,22 @@ let liveSocket = new LiveSocket("/live", Socket, {
 });
 ```
 
+Update your `*_web.ex` file like this:
+
+```
+  defp html_helpers do
+    quote do
+      
+      // Add this line
+      use Tremorx
+
+      # Routes generation with the ~p sigil
+      unquote(verified_routes())
+    end
+  end
+
+```
+
 Configure your `tailwind.config.js` file with the follwing:
 
 Allow tailwind to find css classes defined in this library by adding the following lines to the `content` section in `tailwind.config.js`
@@ -191,6 +207,39 @@ safelist: [
   { pattern: /^gap-/ },
   { pattern: /^min-/ },
 ],
+
+```
+
+## Usage
+In your template import the component you need. For example,
+
+```
+alias Tremorx.Components.Input
+alias Tremorx.Components.Layout
+alias Tremorx.Components.Text
+```
+
+Then use like the following
+
+```
+<Layout.col class="space-y-1.5">
+  <label for="name">
+    <Text.text class="text-tremor-content">
+      Name
+    </Text.text>
+  </label>
+
+  <Input.text_input
+    id="name"
+    name="user[name]"
+    placeholder="juma tano"
+    type="text"
+    field={f[:name]}
+    value={f[:name].value}
+    error={false}
+    error_message={nil}
+  />
+</Layout.col>
 
 ```
 
