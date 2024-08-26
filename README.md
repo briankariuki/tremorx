@@ -12,8 +12,8 @@ by adding `tremorx` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    #{:tremorx, "~> 0.1.0"}
-    {:tremorx, git: "https://github.com/briankariuki/tremorx.git"}
+    {:tremorx, "~> 0.1.0"}
+    #{:tremorx, git: "https://github.com/briankariuki/tremorx.git"}
   ]
 end
 ```
@@ -22,7 +22,7 @@ Add tremorx to the dependecies section in `*_web/assets/package.json` like this:
 {
   "dependencies": {
     //Add this line
-    "tremorx": "file:../deps/tremorx"
+    "tremorx": "file:../../deps/tremorx"
     // If in umbrella project
     "tremorx": "file:../../../deps/tremorx"
   } 
