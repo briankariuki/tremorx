@@ -37,19 +37,20 @@ Add tremorx to the dependecies section in `*_web/assets/package.json` like this:
 ```
 {
   "dependencies": {
-    //Add this line
+    #  Add this line
     "tremorx": "file:../../deps/tremorx"
-    // If in umbrella project
+    
+    # If in umbrella project
     "tremorx": "file:../../../deps/tremorx"
   } 
 }
 ```
 Then import the tremorx hooks in your `assets/js/app.js` file like this:
 ```
-// Import the hooks
+# Import the hooks
 import { TremorHooks } from "tremorx";
 
-// Add the hooks to the LiveSocket hooks option
+# Add the hooks to the LiveSocket hooks option
 let liveSocket = new LiveSocket("/live", Socket, {
   hooks: {...MyHooks, ...TremorxHooks},
 });
@@ -75,7 +76,7 @@ Configure your `tailwind.config.js` file with the follwing:
 Allow tailwind to find css classes defined in this library by adding the following lines to the `content` section in `tailwind.config.js`
 ```
 content: [
-  #Add these two lines. The deps path may be different for umbrella projects
+  # Add these two lines. The deps path may be different for umbrella projects
   "../deps/tremorx/lib/components/**/*.ex",
   "../deps/tremorx/lib/js/*.js",
 ]
@@ -85,7 +86,7 @@ Configure the tremorx theme tokens by adding these theme extensions in `theme` s
 
 ```
 theme: {
-  //Extend your theme with tremor's default config
+  # Extend your theme with tremor's default config
   extend: {
     colors: {
       tremor: {
@@ -149,13 +150,13 @@ theme: {
       },
     },
     boxShadow: {
-      // light
+      # light
       "tremor-input": "0 1px 2px 0 rgb(0 0 0 / 0.05)",
       "tremor-card":
         "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
       "tremor-dropdown":
         "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
-      // dark
+      # dark
       "dark-tremor-input": "0 1px 2px 0 rgb(0 0 0 / 0.05)",
       "dark-tremor-card":
         "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
