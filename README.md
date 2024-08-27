@@ -11,12 +11,20 @@
   <a href="https://opensource.org/license/mit">
     <img alt="MIT License" src="https://img.shields.io/hexpm/l/tremorx">
   </a>
+
+  <a href="https://tremorx.fly.dev/getting_started">
+    <img alt="Phoenix Storybook" src="https://img.shields.io/badge/phoenix-storybook-purple">
+  </a>
 </p>
 
 An Elixir Phoenix component library inspired by [Tremor](https://www.tremor.so/) - The react library to build dashboards fast.
 
 
 **This project is still in development.**
+
+## Docs and Storybook
+
+Preview the components and examples storybook available at [https://tremorx.fly.dev](https://tremorx.fly.dev/getting_started)
 
 ## Installation
 
