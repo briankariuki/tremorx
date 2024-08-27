@@ -31,7 +31,7 @@ defmodule Tremorx.MixProject do
       description: @description,
       licenses: ["MIT"],
       links: %{Github: @github_url},
-      files: ~w(mix.exs lib .formatter.exs LICENSE.md  README.md)
+      files: ~w(mix.exs assets lib .formatter.exs LICENSE.md  README.md)
     ]
   end
 

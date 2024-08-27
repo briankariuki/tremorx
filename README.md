@@ -27,7 +27,9 @@ by adding `tremorx` to your list of dependencies in `mix.exs`:
 def deps do
   [
     {:tremorx, "~> 0.1.0"}
-    #{:tremorx, git: "https://github.com/briankariuki/tremorx.git"}
+    
+    # via git
+    {:tremorx, git: "https://github.com/briankariuki/tremorx.git"}
   ]
 end
 ```
@@ -56,17 +58,16 @@ let liveSocket = new LiveSocket("/live", Socket, {
 Update your `*_web.ex` file like this:
 
 ```
-  defp html_helpers do
-    quote do
-      
-      // Add this line
-      use Tremorx
+defp html_helpers do
+  quote do
+    
+    # Add this line
+    use Tremorx
 
-      # Routes generation with the ~p sigil
-      unquote(verified_routes())
-    end
+    # Routes generation with the ~p sigil
+    unquote(verified_routes())
   end
-
+end
 ```
 
 Configure your `tailwind.config.js` file with the follwing:
@@ -74,7 +75,7 @@ Configure your `tailwind.config.js` file with the follwing:
 Allow tailwind to find css classes defined in this library by adding the following lines to the `content` section in `tailwind.config.js`
 ```
 content: [
-  //Add these two lines. The deps path may be different for umbrella projects
+  #Add these two lines. The deps path may be different for umbrella projects
   "../deps/tremorx/lib/components/**/*.ex",
   "../deps/tremorx/lib/js/*.js",
 ]
