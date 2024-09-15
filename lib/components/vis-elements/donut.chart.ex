@@ -47,6 +47,21 @@ defmodule Tremorx.Components.DonutChart do
     default: "(,.0f",
     doc: "The format to use for the value."
 
+  attr :pad_angle, :float,
+    required: false,
+    default: 0.014,
+    doc: "The padding angle between slices in radians."
+
+  attr :inner_radius_percent, :float,
+    required: false,
+    default: 0.75,
+    doc: "The inner radius of the donut chart as a percentage of the outer radius."
+
+  attr :padding, :integer,
+    required: false,
+    default: 8,
+    doc: "The vertical padding between the chart and the container."
+
   attr :data, :list, required: true, doc: "The data to display on the chart"
   attr :colors, :list, default: [], doc: "The colors to use for each category"
   attr :class, :string, default: nil, doc: "css classes to apply to the chart wrapper container"
@@ -111,6 +126,9 @@ defmodule Tremorx.Components.DonutChart do
         data-label-class={@label_class}
         data-donut-class={@donut_class}
         data-value-format={@value_format}
+        data-pad-angle={@pad_angle}
+        data-inner-radius-percent={@inner_radius_percent}
+        data-padding={@padding}
         class={
           Tails.classes([
             Theme.make_class_name("donutchart", "root"),
