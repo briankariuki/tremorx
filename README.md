@@ -19,8 +19,8 @@
 
 An Elixir Phoenix component library inspired by [Tremor](https://www.tremor.so/) - The react library to build dashboards fast.
 
-
-**This project is still in development.**
+> [!WARNING]
+> The current version is an alpha version. Please report any bugs you find!
 
 ## Docs and Storybook
 
@@ -292,7 +292,7 @@ Then use like the following
 #### Visualization Components
   - [x] Area Chart
   - [x] Bar Chart
-  - [ ] Donut Chart
+  - [x] Donut Chart
   - [x] Line Chart
   - [ ] Scatter Chart
   - [ ] Funnel Chart
