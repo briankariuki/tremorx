@@ -42,6 +42,9 @@ def deps do
 end
 ```
 Add tremorx to the dependecies section in `assets/package.json` like this:
+
+If you don't have a `package.json` file, run `npm init -y`
+
 ```
 {
   "dependencies": {
@@ -87,9 +90,13 @@ Configure your `tailwind.config.js` file with the follwing:
 Allow tailwind to find css classes defined in this library by adding the following lines to the `content` section in `tailwind.config.js`
 ```
 content: [
-  # Add these two lines. The deps path may be different for umbrella projects
+  # Add these two lines.
   "../deps/tremorx/lib/components/**/*.ex",
   "../deps/tremorx/lib/js/*.js",
+
+  # If in umbrella.
+  "../../deps/tremorx/lib/components/**/*.ex",
+  "../../deps/tremorx/lib/js/*.js",
 ]
 ```
 
