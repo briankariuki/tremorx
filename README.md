@@ -46,7 +46,7 @@ Add tremorx to the dependecies section in `assets/package.json` like this:
 {
   "dependencies": {
     #  Add this line
-    "tremorx": "file:../../deps/tremorx"
+    "tremorx": "file:../deps/tremorx"
     
     # If in umbrella project
     "tremorx": "file:../../../deps/tremorx"
