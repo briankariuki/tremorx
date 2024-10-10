@@ -41,7 +41,7 @@ def deps do
   ]
 end
 ```
-Add tremorx to the dependecies section in `*_web/assets/package.json` like this:
+Add tremorx to the dependecies section in `assets/package.json` like this:
 ```
 {
   "dependencies": {
@@ -53,6 +53,9 @@ Add tremorx to the dependecies section in `*_web/assets/package.json` like this:
   } 
 }
 ```
+
+Then run `npm install` in the assets folder.
+
 Then import the tremorx hooks in your `assets/js/app.js` file like this:
 ```
 # Import the hooks
