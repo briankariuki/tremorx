@@ -34,7 +34,7 @@ by adding `tremorx` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:tremorx, "~> 0.1.0"}
+    {:tremorx, "~> 0.1.1"}
     
     # via git
     {:tremorx, git: "https://github.com/briankariuki/tremorx.git"}
