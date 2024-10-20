@@ -2,7 +2,7 @@ defmodule Tremorx.MixProject do
   use Mix.Project
 
   @name :tremorx
-  @version "0.1.0"
+  @version "0.1.1"
   @description "An Elixir Phoenix component library inspired by [Tremor](https://www.tremor.so/) - The react library to build dashboards fast."
   @github_url "https://github.com/briankariuki/tremorx"
 
@@ -31,7 +31,7 @@ defmodule Tremorx.MixProject do
       description: @description,
       licenses: ["MIT"],
       links: %{Github: @github_url},
-      files: ~w(mix.exs assets lib .formatter.exs LICENSE.md  README.md)
+      files: ~w(mix.exs index.js lib .formatter.exs LICENSE.md  README.md)
     ]
   end
 
