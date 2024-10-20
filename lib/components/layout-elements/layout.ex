@@ -7,12 +7,12 @@ defmodule Tremorx.Components.Layout do
   alias Tremorx.Theme
   use Phoenix.Component
 
-  attr(:flex_direction, :string, default: "row")
-  attr(:justify_content, :string, default: "between")
-  attr(:align_items, :string, default: "center")
-  attr(:class, :string, required: false, default: nil)
-  slot(:inner_block, required: false)
-  attr(:rest, :global)
+  attr :flex_direction, :string, default: "row"
+  attr :justify_content, :string, default: "between"
+  attr :align_items, :string, default: "center"
+  attr :class, :string, required: false, default: nil
+  slot :inner_block, required: false
+  attr :rest, :global
 
   @doc """
   Renders a flex
@@ -37,9 +37,9 @@ defmodule Tremorx.Components.Layout do
     """
   end
 
-  attr(:class, :string, required: false, default: nil)
-  slot(:inner_block, required: false, default: nil)
-  attr(:rest, :global)
+  attr :class, :string, required: false, default: nil
+  slot :inner_block, required: false
+  attr :rest, :global
 
   def divider(%{inner_block: []} = assigns) do
     ~H"""
@@ -89,13 +89,13 @@ defmodule Tremorx.Components.Layout do
     """
   end
 
-  attr(:num_items, :string, default: "1")
-  attr(:num_items_sm, :string, default: nil)
-  attr(:num_items_md, :string, default: nil)
-  attr(:num_items_lg, :string, default: nil)
-  slot(:inner_block, required: false)
-  attr(:rest, :global)
-  attr(:class, :string, required: false, default: nil)
+  attr :num_items, :string, default: "1"
+  attr :num_items_sm, :string, default: nil
+  attr :num_items_md, :string, default: nil
+  attr :num_items_lg, :string, default: nil
+  slot :inner_block, required: false
+  attr :rest, :global
+  attr :class, :string, required: false, default: nil
 
   @doc """
   Renders a grid
@@ -121,13 +121,13 @@ defmodule Tremorx.Components.Layout do
     """
   end
 
-  attr(:num_col_span, :string, default: "1")
-  attr(:num_col_span_sm, :string, default: nil)
-  attr(:num_col_span_md, :string, default: nil)
-  attr(:num_col_span_lg, :string, default: nil)
-  slot(:inner_block, required: false)
-  attr(:rest, :global)
-  attr(:class, :string, required: false, default: nil)
+  attr :num_col_span, :string, default: "1"
+  attr :num_col_span_sm, :string, default: nil
+  attr :num_col_span_md, :string, default: nil
+  attr :num_col_span_lg, :string, default: nil
+  slot :inner_block, required: false
+  attr :rest, :global
+  attr :class, :string, required: false, default: nil
 
   @doc """
   Renders a col
@@ -152,11 +152,11 @@ defmodule Tremorx.Components.Layout do
     """
   end
 
-  attr(:decoration, :string, default: "none", values: ~w(top bottom left right none))
-  attr(:decoration_color, :string, required: false, default: nil)
-  slot(:inner_block, required: false)
-  attr(:rest, :global)
-  attr(:class, :string, required: false, default: nil)
+  attr :decoration, :string, default: "none", values: ~w(top bottom left right none)
+  attr :decoration_color, :string, required: false, default: nil
+  slot :inner_block, required: false
+  attr :rest, :global
+  attr :class, :string, required: false, default: nil
 
   @doc """
   Renders a card
