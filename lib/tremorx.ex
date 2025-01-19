@@ -24,7 +24,8 @@ defmodule Tremorx do
         AreaChart,
         LineChart,
         BarChart,
-        DonutChart
+        DonutChart,
+        DatePicker
       }
     end
   end

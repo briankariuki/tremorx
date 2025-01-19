@@ -101,6 +101,7 @@ defmodule Tremorx.Components.Menu do
         <%= render_slot(@button) %>
       </button>
 
+      <%!-- aria-hidden="true" --%>
       <ul
         class={
           Tails.classes([
@@ -110,7 +111,7 @@ defmodule Tremorx.Components.Menu do
           ])
         }
         aria-role="menu"
-        aria-hidden="true"
+        inert="true"
       >
         <%= for item <- @item do %>
           <li
