@@ -101,12 +101,11 @@ defmodule Tremorx.Components.Menu do
         <%= render_slot(@button) %>
       </button>
 
-      <%!-- aria-hidden="true" --%>
       <ul
         class={
           Tails.classes([
             Theme.make_class_name("menu", "items"),
-            "absolute z-[1000] w-full hidden",
+            "absolute z-[10000] w-full hidden",
             if(is_nil(@menu_items_class), do: "", else: @menu_items_class)
           ])
         }
