@@ -20,8 +20,8 @@ defmodule Tremorx.Components.Text do
     ~H"""
     <p
       class={
-        "text-tremor-default " <>  Tails.classes([
-
+        Tails.classes([
+          "text-tremor-default",
           if(is_nil(@color),
             do: Tails.classes(["text-tremor-content", "dark:text-dark-tremor-content"]),
             else: Theme.get_color_style(@color, "text", "text")
@@ -48,11 +48,14 @@ defmodule Tremorx.Components.Text do
     ~H"""
     <p
       class={
-        "text-tremor-title " <> Tails.classes([
-          "font-medium",
+        Tails.classes([
+          "text-tremor-title font-medium",
           if(is_nil(@color),
             do:
-              Tails.classes(["text-tremor-content-emphasis", "dark:text-dark-tremor-content-emphasis"]),
+              Tails.classes([
+                "text-tremor-content-emphasis",
+                "dark:text-dark-tremor-content-emphasis"
+              ]),
             else: Theme.get_color_style(@color, "dark_text", "text")
           ),
           if(is_nil(@class), do: "", else: @class)
